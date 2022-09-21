@@ -8,6 +8,12 @@ export default function Provider({ children }) {
   const [error, setError] = useState('');
   const [data, setData] = useState({});
 
+  const [filterByName, setFilterByName] = useState({ name: '' });
+  const [numericFilter, setNumericFilter] = useState({
+    filterByNumericValues: [],
+    appliedFilter: [],
+  });
+
   useEffect(() => {
     const getPlanets = async () => {
       try {
@@ -15,6 +21,7 @@ export default function Provider({ children }) {
         info.forEach((el) => delete el.residents);
 
         setData(info);
+        setNumericFilter((prevState) => ({ ...prevState, appliedFilter: info }));
         setLoading(false);
       } catch (e) {
         setLoading(false);
@@ -26,7 +33,13 @@ export default function Provider({ children }) {
   }, []);
 
   const context = {
-    loading, error, data,
+    loading,
+    error,
+    data,
+    filterByName,
+    setFilterByName,
+    numericFilter,
+    setNumericFilter,
   };
 
   return (

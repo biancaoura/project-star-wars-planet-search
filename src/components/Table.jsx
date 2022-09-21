@@ -1,19 +1,25 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import PlanetContext from '../context/PlanetContext';
 
 export default function Table() {
-  const { loading, error, data } = useContext(PlanetContext);
-  const [planetFilter, setPlanetFilter] = useState({ filterByName: { name: '' } });
+  const {
+    loading, error, data, filterByName, setFilterByName, numericFilter, setNumericFilter,
+  } = useContext(PlanetContext);
 
   const tableHeader = [
     'Name', 'Rotation Period', 'Orbital Period', 'Diameter', 'Climate', 'Gravity',
     'Terrain', 'Surface Water', 'Population', 'Films', 'Created', 'Edited', 'URL',
   ];
 
-  const handlePlanetFilter = ({ target: { value } }) => {
-    setPlanetFilter({ filterByName: { name: value } });
+  const handleNameFilter = ({ target: { value } }) => {
+    setFilterByName((prevState) => ({ ...prevState, name: value }));
+    setNumericFilter((prevState) => ({
+      ...prevState,
+      appliedFilter: data.filter((planet) => planet.name.includes(value)),
+    }));
   };
-  const { filterByName: { name } } = planetFilter;
+
+  const { name } = filterByName;
 
   if (loading) return <h1>Loading...</h1>;
   if (error) return <h1>Error</h1>;
@@ -23,9 +29,10 @@ export default function Table() {
         <input
           type="text"
           value={ name }
-          onChange={ handlePlanetFilter }
+          onChange={ handleNameFilter }
           data-testid="name-filter"
         />
+
         <table>
           <thead>
             <tr>
@@ -34,8 +41,7 @@ export default function Table() {
           </thead>
           <tbody>
             {
-              data
-                .filter((planet) => planet.name.includes(name))
+              numericFilter.appliedFilter
                 .map((el, index) => (
                   <tr key={ index }>
                     <td>{el.name}</td>
