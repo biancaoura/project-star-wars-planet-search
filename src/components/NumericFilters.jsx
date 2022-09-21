@@ -19,7 +19,7 @@ export default function NumericFilters() {
     const obj = { column, comparison, value };
     setNumericFilter((prevState) => ({
       ...prevState,
-      filterByNumericValues: [...prevState.filterByNumericValues, obj],
+      filterByNumericValues: [obj, ...prevState.filterByNumericValues],
     }));
 
     setInputFilters({ column: 'population', comparison: 'maior que', value: 0 });
@@ -33,12 +33,16 @@ export default function NumericFilters() {
 
   useEffect(() => {
     const obj = numericFilter.filterByNumericValues[0];
-    setNumericFilter((prevState) => ({
-      ...prevState,
-      appliedFilter: prevState.appliedFilter
-        .filter((planet) => toCompare[obj.comparison](Number(planet[obj.column]),
-          Number(obj.value))),
-    }));
+    console.log(obj);
+    if (obj) {
+      const { column, comparison, value } = obj;
+      setNumericFilter((prevState) => ({
+        ...prevState,
+        appliedFilter: prevState.appliedFilter
+          .filter((planet) => toCompare[comparison](Number(planet[column]),
+            Number(value))),
+      }));
+    }
   }, [numericFilter.filterByNumericValues]);
 
   const { column, comparison, value } = inputFilters;
@@ -71,9 +75,9 @@ export default function NumericFilters() {
           onChange={ handleNumericFilter }
           data-testid="comparison-filter"
         >
-          <option value="maior que">maior que</option>
-          <option value="menor que">menor que</option>
-          <option value="igual a">igual a</option>
+          { Object.keys(toCompare).map((el) => (
+            <option value={ el } key={ el }>{el}</option>
+          )) }
         </select>
       </label>
 

@@ -33,6 +33,25 @@ export default function Table() {
           data-testid="name-filter"
         />
 
+        <ul>
+          {
+            numericFilter.filterByNumericValues
+              .map(({ column, comparison, value }, index) => (
+                <li key={ index }>
+                  <span>
+                    {column}
+                    {' '}
+                  </span>
+                  <span>
+                    {comparison}
+                    {' '}
+                  </span>
+                  <span>{value}</span>
+                </li>
+              ))
+          }
+        </ul>
+
         <table>
           <thead>
             <tr>
