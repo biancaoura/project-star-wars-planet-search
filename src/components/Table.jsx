@@ -15,7 +15,7 @@ export default function Table() {
     setFilterByName((prevState) => ({ ...prevState, name: value }));
     setNumericFilter((prevState) => ({
       ...prevState,
-      appliedFilter: data.filter((planet) => planet.name.includes(value)),
+      appliedFilter: data.filter((planet) => planet.name.toLowerCase().includes(value)),
     }));
   };
 
@@ -26,12 +26,16 @@ export default function Table() {
   if (data) {
     return (
       <>
-        <input
-          type="text"
-          value={ name }
-          onChange={ handleNameFilter }
-          data-testid="name-filter"
-        />
+        <label htmlFor="name-filter">
+          Planet name
+          <input
+            type="text"
+            value={ name }
+            id="name-filter"
+            onChange={ handleNameFilter }
+            data-testid="name-filter"
+          />
+        </label>
 
         <ul>
           {

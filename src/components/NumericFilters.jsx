@@ -6,9 +6,9 @@ export default function NumericFilters() {
     numericFilter, setNumericFilter,
   } = useContext(PlanetContext);
 
-  const [inputFilters, setInputFilters] = useState(
-    { column: 'population', comparison: 'maior que', value: 0 },
-  );
+  const INITIAL_INPUT = { column: 'population', comparison: 'maior que', value: 0 };
+
+  const [inputFilters, setInputFilters] = useState(INITIAL_INPUT);
 
   const handleNumericFilter = ({ target: { name, value } }) => {
     setInputFilters((prevState) => ({ ...prevState, [name]: value }));
@@ -22,7 +22,7 @@ export default function NumericFilters() {
       filterByNumericValues: [obj, ...prevState.filterByNumericValues],
     }));
 
-    setInputFilters({ column: 'population', comparison: 'maior que', value: 0 });
+    setInputFilters(INITIAL_INPUT);
   };
 
   const toCompare = {
@@ -33,7 +33,6 @@ export default function NumericFilters() {
 
   useEffect(() => {
     const obj = numericFilter.filterByNumericValues[0];
-    console.log(obj);
     if (obj) {
       const { column, comparison, value } = obj;
       setNumericFilter((prevState) => ({
@@ -81,13 +80,17 @@ export default function NumericFilters() {
         </select>
       </label>
 
-      <input
-        type="number"
-        name="value"
-        value={ value }
-        onChange={ handleNumericFilter }
-        data-testid="value-filter"
-      />
+      <label htmlFor="value">
+        Valor
+        <input
+          type="number"
+          name="value"
+          id="value"
+          value={ value }
+          onChange={ handleNumericFilter }
+          data-testid="value-filter"
+        />
+      </label>
 
       <button
         type="button"
