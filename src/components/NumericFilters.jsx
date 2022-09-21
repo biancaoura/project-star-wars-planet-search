@@ -2,11 +2,14 @@ import React, { useContext, useState, useEffect } from 'react';
 import PlanetContext from '../context/PlanetContext';
 
 export default function NumericFilters() {
+  const INITIAL_INPUT = { column: 'population', comparison: 'maior que', value: 0 };
+  const COLUMN_OPTIONS = [
+    'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water',
+  ];
+
   const {
     numericFilter, setNumericFilter,
   } = useContext(PlanetContext);
-
-  const INITIAL_INPUT = { column: 'population', comparison: 'maior que', value: 0 };
 
   const [inputFilters, setInputFilters] = useState(INITIAL_INPUT);
 
@@ -44,6 +47,11 @@ export default function NumericFilters() {
     }
   }, [numericFilter.filterByNumericValues]);
 
+  const setOptions = () => {
+    const usedFilters = numericFilter.filterByNumericValues.map((el) => el.column);
+    return COLUMN_OPTIONS.filter((option) => !usedFilters.includes(option));
+  };
+
   const { column, comparison, value } = inputFilters;
 
   return (
@@ -57,11 +65,9 @@ export default function NumericFilters() {
           onChange={ handleNumericFilter }
           data-testid="column-filter"
         >
-          <option value="population" id="population">population</option>
-          <option value="orbital_period">orbital_period</option>
-          <option value="diameter">diameter</option>
-          <option value="rotation_period">rotation_period</option>
-          <option value="surface_water">surface_water</option>
+          { setOptions().map((option) => (
+            <option value={ option } key={ option }>{option}</option>
+          )) }
         </select>
       </label>
 
