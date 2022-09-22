@@ -55,57 +55,60 @@ export default function NumericFilters() {
   const { column, comparison, value } = inputFilters;
 
   return (
-    <form>
-      <label htmlFor="column">
-        Coluna
-        <select
-          name="column"
-          id="column"
-          value={ column }
-          onChange={ handleNumericFilter }
-          data-testid="column-filter"
+    <div>
+      <form>
+        <label htmlFor="column">
+          Coluna
+          <select
+            name="column"
+            id="column"
+            value={ column }
+            onChange={ handleNumericFilter }
+            data-testid="column-filter"
+          >
+            { setOptions().map((option) => (
+              <option value={ option } key={ option }>{option}</option>
+            )) }
+          </select>
+        </label>
+        <label htmlFor="comparison">
+          Operador
+          <select
+            name="comparison"
+            id="comparison"
+            value={ comparison }
+            onChange={ handleNumericFilter }
+            data-testid="comparison-filter"
+          >
+            { Object.keys(toCompare).map((el) => (
+              <option value={ el } key={ el }>{el}</option>
+            )) }
+          </select>
+        </label>
+        <label htmlFor="value">
+          Valor
+          <input
+            type="number"
+            name="value"
+            id="value"
+            value={ value }
+            onChange={ handleNumericFilter }
+            data-testid="value-filter"
+          />
+        </label>
+        <button
+          type="button"
+          data-testid="button-filter"
+          onClick={ handleNumericFilterClick }
         >
-          { setOptions().map((option) => (
-            <option value={ option } key={ option }>{option}</option>
-          )) }
-        </select>
-      </label>
+          Filtrar
+        </button>
+      </form>
 
-      <label htmlFor="comparison">
-        Operador
-        <select
-          name="comparison"
-          id="comparison"
-          value={ comparison }
-          onChange={ handleNumericFilter }
-          data-testid="comparison-filter"
-        >
-          { Object.keys(toCompare).map((el) => (
-            <option value={ el } key={ el }>{el}</option>
-          )) }
-        </select>
-      </label>
+      <button type="button" data-testid="button-remove-filters">
+        Remover Filtros
 
-      <label htmlFor="value">
-        Valor
-        <input
-          type="number"
-          name="value"
-          id="value"
-          value={ value }
-          onChange={ handleNumericFilter }
-          data-testid="value-filter"
-        />
-      </label>
-
-      <button
-        type="button"
-        data-testid="button-filter"
-        onClick={ handleNumericFilterClick }
-      >
-        Filtrar
       </button>
-
-    </form>
+    </div>
   );
 }
