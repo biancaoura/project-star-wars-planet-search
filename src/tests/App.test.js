@@ -100,6 +100,7 @@ describe('Testing filters', () => {
     userEvent.click(removeAllBtn);
     expect(planetName[0]).toHaveTextContent(/tatooine/i);
   });
+
   it('4 - Should filter only the matching planets when typing a planet name', async () => {
     const bespinPlanet = await screen.findByText(/bespin/i);
 
@@ -122,7 +123,7 @@ describe('Testing sorting the list', () => {
 
   afterEach(cleanup);
 
-  it('1 - Filtering by population, order the list with unknown population at the bottom of the list', async () => {
+  it('1 - Filtering by population should order the list with unknown population at the bottom', async () => {
     const planetName = await screen.findAllByRole('cell');
     expect(planetName[0]).toHaveTextContent(/tatooine/i);
 
@@ -171,6 +172,5 @@ describe('Testing rejected promise', () => {
     const errMsg = await screen.findByRole('heading', { level: 1, name: /error/i });
 
     expect(errMsg).toBeInTheDocument();
-
   });
 });
