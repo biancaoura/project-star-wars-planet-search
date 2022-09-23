@@ -4,11 +4,11 @@ import { COLUMN_OPTIONS, COMPARISON } from '../helpers';
 
 export default function NumericFilters() {
   const {
-    numericFilter, handleNumericFilter, handleNumericFilterClick, inputFilters,
+    numericFilter, handleInputFilter, handleInputFilterClick, inputFilters,
   } = useContext(PlanetContext);
 
   const setOptions = () => {
-    const usedFilters = numericFilter.filterByNumericValues.map((el) => el.column);
+    const usedFilters = numericFilter.filterByNumericValues.map(({ column }) => column);
     return COLUMN_OPTIONS.filter((option) => !usedFilters.includes(option));
   };
 
@@ -22,7 +22,7 @@ export default function NumericFilters() {
           name="column"
           id="column"
           value={ column }
-          onChange={ handleNumericFilter }
+          onChange={ handleInputFilter }
           data-testid="column-filter"
         >
           { setOptions().map((option) => (
@@ -36,11 +36,11 @@ export default function NumericFilters() {
           name="comparison"
           id="comparison"
           value={ comparison }
-          onChange={ handleNumericFilter }
+          onChange={ handleInputFilter }
           data-testid="comparison-filter"
         >
-          { Object.keys(COMPARISON).map((el) => (
-            <option value={ el } key={ el }>{el}</option>
+          { Object.keys(COMPARISON).map((operator) => (
+            <option value={ operator } key={ operator }>{operator}</option>
           )) }
         </select>
       </label>
@@ -51,14 +51,14 @@ export default function NumericFilters() {
           name="value"
           id="value"
           value={ value }
-          onChange={ handleNumericFilter }
+          onChange={ handleInputFilter }
           data-testid="value-filter"
         />
       </label>
       <button
         type="button"
         data-testid="button-filter"
-        onClick={ handleNumericFilterClick }
+        onClick={ handleInputFilterClick }
       >
         Filtrar
       </button>

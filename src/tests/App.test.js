@@ -4,6 +4,7 @@ import { act } from 'react-dom/test-utils';
 import App from '../App';
 import userEvent from '@testing-library/user-event';
 import mockAPI from './helpers/mockAPI';
+// import getPlanetsApi from '../services/planetAPI';
 
 describe('Testing resolved promise', () => {
   beforeEach(async () => {
@@ -85,3 +86,21 @@ describe('Testing resolved promise', () => {
   });
 });
 
+// describe('Testing rejected promise', () => {
+//   it('1 - Should render an error message', async () => {
+//     // jest.spyOn(global, 'fetch');
+//     // // global.fetch = jest.fn().mockRejectedValue(new Error('Error'));
+//     // global.fetch = jest.fn(() => Promise.reject({
+//     //   json: () => Promise.reject(mockAPI),
+//     // }));
+
+//     // expect(await fetch('https://swapi.dev/api/planets')).rejects.toMatch('error');
+
+//     const error = new Error('Error');
+//     jest.spyOn(global, 'fetch').mockRejectedValueOnce(error);
+//     await expect(getPlanetsApi()).rejects.toThrow(error);
+
+//     const errorMsg = await screen.findByRole('heading', { level: 1, name: /error/i });
+//     expect(errorMsg).toBeInTheDocument();
+//   });
+// });

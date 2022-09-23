@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { node } from 'prop-types';
 import PlanetContext from './PlanetContext';
 import getPlanetsApi from '../services/planetAPI';
-import { INITIAL_INPUT, COMPARISON } from '../helpers';
+import { INITIAL_INPUT, INITIAL_SORT, COMPARISON } from '../helpers';
 
 export default function Provider({ children }) {
   const [loading, setLoading] = useState(true);
@@ -14,6 +14,8 @@ export default function Provider({ children }) {
   const [filterByName, setFilterByName] = useState({ name: '' });
   const [inputFilters, setInputFilters] = useState(INITIAL_INPUT);
   const [numericFilter, setNumericFilter] = useState({ filterByNumericValues: [] });
+  const [order, setOrder] = useState(INITIAL_SORT);
+  const [sort, setSort] = useState(INITIAL_SORT);
 
   useEffect(() => {
     const getPlanets = async () => {
@@ -38,8 +40,9 @@ export default function Provider({ children }) {
 
   useEffect(() => {
     const nameInput = filterByName.name.toLowerCase();
-    const teste = data.filter((planet) => planet.name.toLowerCase().includes(nameInput));
-    setAppliedFilter(teste);
+    const filteredName = data
+      .filter((planet) => planet.name.toLowerCase().includes(nameInput));
+    setAppliedFilter(filteredName);
   }, [filterByName, data]);
 
   useEffect(() => {
@@ -47,23 +50,48 @@ export default function Provider({ children }) {
 
     numericFilter.filterByNumericValues.forEach(({ column, comparison, value }) => {
       const filterPlanet = updatedPlanets
-        .filter((planet) => COMPARISON[comparison](Number(planet[column]),
-          Number(value)));
+        .filter((planet) => (
+          COMPARISON[comparison](Number(planet[column]), Number(value))));
+
       updatedPlanets = filterPlanet;
     });
 
     setAppliedFilter(updatedPlanets);
   }, [numericFilter, data]);
 
+  useEffect(() => {
+    let updatedOrder = appliedFilter;
+
+    const { direction, sortBy } = order;
+
+    const rmUnknown = updatedOrder.filter((planet) => (
+      planet[sortBy] !== 'unknown'
+    ));
+
+    const sortedArr = rmUnknown.sort((a, b) => (
+      direction === 'ASC'
+        ? Number(a[sortBy]) - Number(b[sortBy])
+        : Number(b[sortBy]) - Number(a[sortBy])
+    ));
+
+    const addUnknown = updatedOrder.filter((planet) => (
+      planet[sortBy] === 'unknown'
+    ));
+
+    updatedOrder = [...sortedArr, ...addUnknown];
+
+    setAppliedFilter(updatedOrder);
+  }, [sort]);
+
   const handleNameChange = ({ target: { value } }) => {
     setFilterByName((prevState) => ({ ...prevState, name: value }));
   };
 
-  const handleNumericFilter = ({ target: { name, value } }) => {
+  const handleInputFilter = ({ target: { name, value } }) => {
     setInputFilters((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleNumericFilterClick = () => {
+  const handleInputFilterClick = () => {
     const { column, comparison, value } = inputFilters;
     const obj = { column, comparison, value };
     setNumericFilter((prevState) => ({
@@ -72,6 +100,14 @@ export default function Provider({ children }) {
     }));
 
     setInputFilters(INITIAL_INPUT);
+  };
+
+  const handleSorting = ({ target: { name, value } }) => {
+    setOrder((prevState) => ({ ...prevState, [name]: value }));
+  };
+
+  const handleSortingClick = () => {
+    setSort(order);
   };
 
   const removeFilterClick = (param) => {
@@ -98,9 +134,13 @@ export default function Provider({ children }) {
     setAppliedFilter,
     inputFilters,
     setInputFilters,
+    order,
+    setOrder,
     handleNameChange,
-    handleNumericFilter,
-    handleNumericFilterClick,
+    handleInputFilter,
+    handleInputFilterClick,
+    handleSorting,
+    handleSortingClick,
     removeFilterClick,
     removeAllFiltersClick,
   };

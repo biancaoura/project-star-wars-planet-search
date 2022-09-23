@@ -12,6 +12,11 @@ export const INITIAL_INPUT = {
   value: 0,
 };
 
+export const INITIAL_SORT = {
+  sortBy: COLUMN_OPTIONS[0],
+  direction: '',
+};
+
 export const COMPARISON = {
   'maior que': (a, b) => a > b,
   'menor que': (a, b) => a < b,
