@@ -74,9 +74,7 @@ export default function Provider({ children }) {
         : Number(b[sortBy]) - Number(a[sortBy])
     ));
 
-    const addUnknown = updatedOrder.filter((planet) => (
-      planet[sortBy] === 'unknown'
-    ));
+    const addUnknown = updatedOrder.filter((planet) => (planet[sortBy] === 'unknown'));
 
     updatedOrder = [...sortedArr, ...addUnknown];
 
