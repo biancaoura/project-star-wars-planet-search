@@ -3,16 +3,10 @@ import PlanetContext from '../context/PlanetContext';
 
 export default function NameFilter() {
   const {
-    filterByName: { name }, setFilterByName, setNumericFilter, data,
+    handleNameChange, filterByName,
   } = useContext(PlanetContext);
 
-  const handleFilters = ({ target: { value } }) => {
-    setFilterByName((prevState) => ({ ...prevState, name: value }));
-    setNumericFilter((prevState) => ({
-      ...prevState,
-      appliedFilter: data.filter((planet) => planet.name.toLowerCase().includes(value)),
-    }));
-  };
+  const { name } = filterByName;
 
   return (
     <label htmlFor="name-filter">
@@ -21,7 +15,7 @@ export default function NameFilter() {
         type="text"
         value={ name }
         id="name-filter"
-        onChange={ handleFilters }
+        onChange={ handleNameChange }
         data-testid="name-filter"
       />
     </label>

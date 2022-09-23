@@ -1,16 +1,18 @@
 import React from 'react';
-import AppliedFilters from './components/AppliedFilters';
+import FilterList from './components/FilterList';
 import NameFilter from './components/NameFilter';
 import NumericFilters from './components/NumericFilters';
+import RemoveAllFiltersBtn from './components/RemoveAllFiltersBtn';
 import Table from './components/Table';
 
 export default function Home() {
   return (
-    <div>
+    <main>
       <NumericFilters />
+      <RemoveAllFiltersBtn />
       <NameFilter />
-      <AppliedFilters />
+      <FilterList />
       <Table />
-    </div>
+    </main>
   );
 }

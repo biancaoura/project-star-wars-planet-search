@@ -3,7 +3,7 @@ import PlanetContext from '../context/PlanetContext';
 
 export default function Table() {
   const {
-    loading, error, data, numericFilter,
+    loading, error, appliedFilter,
   } = useContext(PlanetContext);
 
   const tableHeader = [
@@ -13,7 +13,7 @@ export default function Table() {
 
   if (loading) return <h1>Loading...</h1>;
   if (error) return <h1>Error</h1>;
-  if (data) {
+  if (appliedFilter) {
     return (
       <table>
         <thead>
@@ -23,7 +23,7 @@ export default function Table() {
         </thead>
         <tbody>
           {
-            numericFilter.appliedFilter
+            appliedFilter
               .map((el, index) => (
                 <tr key={ index }>
                   <td>{ el.name }</td>
