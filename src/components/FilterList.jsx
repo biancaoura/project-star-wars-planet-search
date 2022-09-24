@@ -11,7 +11,7 @@ export default function FilterList() {
       {
         numericFilter.filterByNumericValues
           .map(({ column, comparison, value }, index) => (
-            <li key={ index } data-testid="filter">
+            <li key={ index }>
               <span>
                 { column }
                 {' '}

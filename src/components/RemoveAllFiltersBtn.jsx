@@ -8,7 +8,6 @@ export default function RemoveAllFiltersBtn() {
     <button
       type="button"
       onClick={ removeAllFiltersClick }
-      data-testid="button-remove-filters"
     >
       Remover todos
     </button>

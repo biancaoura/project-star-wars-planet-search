@@ -23,7 +23,6 @@ export default function NumericFilters() {
           id="column"
           value={ column }
           onChange={ handleInputFilter }
-          data-testid="column-filter"
         >
           { setOptions().map((option) => (
             <option value={ option } key={ option }>{option}</option>
@@ -37,7 +36,6 @@ export default function NumericFilters() {
           id="comparison"
           value={ comparison }
           onChange={ handleInputFilter }
-          data-testid="comparison-filter"
         >
           { Object.keys(COMPARISON).map((operator) => (
             <option value={ operator } key={ operator }>{operator}</option>
@@ -52,12 +50,10 @@ export default function NumericFilters() {
           id="value"
           value={ value }
           onChange={ handleInputFilter }
-          data-testid="value-filter"
         />
       </label>
       <button
         type="button"
-        data-testid="button-filter"
         onClick={ handleInputFilterClick }
       >
         Filtrar

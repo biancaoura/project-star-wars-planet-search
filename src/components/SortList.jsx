@@ -18,7 +18,6 @@ export default function SortList() {
           id="sortBy"
           value={ sortBy }
           onChange={ handleSorting }
-          data-testid="column-sort"
         >
           { COLUMN_OPTIONS.map((option) => (
             <option value={ option } key={ option }>{option}</option>
@@ -33,7 +32,6 @@ export default function SortList() {
           id="ASC"
           value="ASC"
           onChange={ handleSorting }
-          data-testid="column-sort-input-asc"
         />
 
         Ascendente
@@ -46,7 +44,6 @@ export default function SortList() {
           id="DESC"
           value="DESC"
           onChange={ handleSorting }
-          data-testid="column-sort-input-desc"
         />
 
         Descendente
@@ -55,7 +52,6 @@ export default function SortList() {
       <button
         type="button"
         onClick={ handleSortingClick }
-        data-testid="column-sort-button"
       >
         Ordenar
       </button>

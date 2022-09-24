@@ -25,7 +25,7 @@ export default function Table() {
           appliedFilter
             .map((el, index) => (
               <tr key={ index }>
-                <td data-testid="planet-name">{ el.name }</td>
+                <td>{ el.name }</td>
                 <td>{ el.rotation_period }</td>
                 <td>{ el.orbital_period }</td>
                 <td>{ el.diameter }</td>

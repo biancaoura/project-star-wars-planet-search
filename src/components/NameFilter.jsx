@@ -16,7 +16,6 @@ export default function NameFilter() {
         value={ name }
         id="name-filter"
         onChange={ handleNameChange }
-        data-testid="name-filter"
       />
     </label>
   );
