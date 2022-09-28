@@ -15,7 +15,7 @@ export default function NumericFilters() {
   const { column, comparison, value } = inputFilters;
 
   return (
-    <form className="numeric-filters-container">
+    <form className="numeric-sort-container">
       <label htmlFor="column" className="input-container">
         Coluna
         <select

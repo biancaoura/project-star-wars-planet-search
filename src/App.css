@@ -60,11 +60,12 @@
   padding: 2em;
 }
 
-.numeric-filters-container {
+.numeric-sort-container {
   color: white;
   display: flex;
   flex-direction: column;
   gap: 2em;
+  justify-content: space-between;
 }
 
 .filter-btn {
@@ -75,4 +76,19 @@
   color: white;
   padding: 0.7em 1.4em;
   width: 50%;
+}
+
+.radio {
+  appearance: none;
+  background-clip: content-box;
+  background-color: rgb(85, 85, 85);
+  border: 6px solid rgb(85, 85, 85);
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+}
+
+.radio:checked {
+  background-color: rgb(255, 255, 104);
+  border: 3px solid rgb(85, 85, 85);
 }

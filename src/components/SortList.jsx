@@ -8,9 +8,9 @@ export default function SortList() {
   const { sortBy } = order;
 
   return (
-    <form>
+    <form className="numeric-sort-container">
 
-      <label htmlFor="sortBy">
+      <label htmlFor="sortBy" className="input-container">
         Ordenar por
 
         <select
@@ -18,6 +18,7 @@ export default function SortList() {
           id="sortBy"
           value={ sortBy }
           onChange={ handleSorting }
+          className="input-element"
         >
           { COLUMN_OPTIONS.map((option) => (
             <option value={ option } key={ option }>{option}</option>
@@ -25,33 +26,35 @@ export default function SortList() {
         </select>
       </label>
 
-      <label htmlFor="ASC">
-        <input
-          type="radio"
-          name="direction"
-          id="ASC"
-          value="ASC"
-          onChange={ handleSorting }
-        />
-
-        Ascendente
-      </label>
-
-      <label htmlFor="DESC">
-        <input
-          type="radio"
-          name="direction"
-          id="DESC"
-          value="DESC"
-          onChange={ handleSorting }
-        />
-
-        Descendente
-      </label>
+      <div className="radio-container">
+        <label htmlFor="ASC" className="input-container">
+          <input
+            type="radio"
+            name="direction"
+            id="ASC"
+            value="ASC"
+            onChange={ handleSorting }
+            className="radio"
+          />
+          Ascendente
+        </label>
+        <label htmlFor="DESC" className="input-container">
+          <input
+            type="radio"
+            name="direction"
+            id="DESC"
+            value="DESC"
+            onChange={ handleSorting }
+            className="radio"
+          />
+          Descendente
+        </label>
+      </div>
 
       <button
         type="button"
         onClick={ handleSortingClick }
+        className="filter-btn"
       >
         Ordenar
       </button>
