@@ -34,23 +34,45 @@
 
 .filter-container {
   align-items: center;
-  background: black;
   display: flex;
   flex-direction: column;
 }
 
-.name-input-container {
+.input-container {
   align-items: center;
   color: white;
   display: flex;
-  gap: 1em;
+  gap: 0.8em;
   height: 2em;
 }
 
-.input-container {
+.input-element {
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.495);
   color: white;
   outline: none;
+}
+
+.filter-numeric-sort-container {
+  display: flex;
+  gap: 6em;
+  padding: 2em;
+}
+
+.numeric-filters-container {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.filter-btn {
+  align-self: center;
+  background: black;
+  border: 1px solid yellow;
+  border-radius: 10px;
+  color: white;
+  padding: 0.7em 1.4em;
+  width: 50%;
 }
