@@ -15,6 +15,7 @@ export default function Home() {
         <NameFilter />
         <div className="filter-numeric-sort-container">
           <NumericFilters />
+          <div className="line" />
           <SortList />
         </div>
         <RemoveAllFiltersBtn />

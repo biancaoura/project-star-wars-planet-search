@@ -56,7 +56,7 @@
 
 .filter-numeric-sort-container {
   display: flex;
-  gap: 6em;
+  gap: 4em;
   padding: 2em;
 }
 
@@ -64,8 +64,15 @@
   color: white;
   display: flex;
   flex-direction: column;
-  gap: 2em;
+  gap: 1.2em;
   justify-content: space-between;
+}
+
+.line {
+  align-self: center;
+  background: rgba(255, 255, 255, 0.495);
+  height: 100px;
+  width: 1px;
 }
 
 .filter-btn {
