@@ -70,12 +70,17 @@
 
 .filter-btn {
   align-self: center;
-  background: black;
+  background-color: black;
   border: 1px solid yellow;
   border-radius: 10px;
   color: white;
   padding: 0.7em 1.4em;
   width: 50%;
+}
+
+.filter-btn:hover {
+  background-color: rgb(20, 20, 20);
+  cursor: pointer;
 }
 
 .radio {
@@ -91,4 +96,9 @@
 .radio:checked {
   background-color: rgb(255, 255, 104);
   border: 3px solid rgb(85, 85, 85);
+}
+
+.remove-all-button {
+  border: 1px solid rgb(255, 77, 77);
+  width: 10%;
 }
