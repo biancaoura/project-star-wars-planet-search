@@ -9,13 +9,14 @@ export default function NameFilter() {
   const { name } = filterByName;
 
   return (
-    <label htmlFor="name-filter">
+    <label htmlFor="name-filter" className="name-input-container">
       Planet name
       <input
         type="text"
         value={ name }
         id="name-filter"
         onChange={ handleNameChange }
+        className="input-container"
       />
     </label>
   );

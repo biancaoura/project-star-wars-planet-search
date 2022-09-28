@@ -11,10 +11,14 @@ export default function Home() {
   return (
     <main className="home">
       <Header />
-      <NumericFilters />
-      <SortList />
-      <RemoveAllFiltersBtn />
-      <NameFilter />
+      <div className="filter-container">
+        <NameFilter />
+        <div className="filter-numeric-sort-container">
+          <NumericFilters />
+          <SortList />
+        </div>
+        <RemoveAllFiltersBtn />
+      </div>
       <FilterList />
       <Table />
     </main>

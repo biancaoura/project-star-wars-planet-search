@@ -32,3 +32,25 @@
   width: 40%;
 }
 
+.filter-container {
+  align-items: center;
+  background: black;
+  display: flex;
+  flex-direction: column;
+}
+
+.name-input-container {
+  align-items: center;
+  color: white;
+  display: flex;
+  gap: 1em;
+  height: 2em;
+}
+
+.input-container {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid white;
+  color: white;
+  outline: none;
+}
