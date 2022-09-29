@@ -10,7 +10,7 @@ export default function RemoveAllFiltersBtn() {
       onClick={ removeAllFiltersClick }
       className="filter-btn remove-all-button"
     >
-      Remover todos
+      Remove all filters
     </button>
   );
 }

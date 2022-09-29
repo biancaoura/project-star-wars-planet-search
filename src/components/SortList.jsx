@@ -11,7 +11,7 @@ export default function SortList() {
     <form className="numeric-sort-container">
 
       <label htmlFor="sortBy" className="input-container">
-        Ordenar por
+        Sort by
 
         <select
           name="sortBy"
@@ -36,7 +36,7 @@ export default function SortList() {
             onChange={ handleSorting }
             className="radio"
           />
-          Ascendente
+          Ascending
         </label>
         <label htmlFor="DESC" className="input-container">
           <input
@@ -47,7 +47,7 @@ export default function SortList() {
             onChange={ handleSorting }
             className="radio"
           />
-          Descendente
+          Descending
         </label>
       </div>
 
@@ -56,7 +56,7 @@ export default function SortList() {
         onClick={ handleSortingClick }
         className="filter-btn"
       >
-        Ordenar
+        Sort
       </button>
 
     </form>

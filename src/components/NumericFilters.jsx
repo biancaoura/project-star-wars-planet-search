@@ -17,7 +17,7 @@ export default function NumericFilters() {
   return (
     <form className="numeric-sort-container">
       <label htmlFor="column" className="input-container">
-        Coluna
+        Column
         <select
           name="column"
           id="column"
@@ -31,7 +31,7 @@ export default function NumericFilters() {
         </select>
       </label>
       <label htmlFor="comparison" className="input-container">
-        Operador
+        Operator
         <select
           name="comparison"
           id="comparison"
@@ -45,14 +45,14 @@ export default function NumericFilters() {
         </select>
       </label>
       <label htmlFor="value" className="input-container">
-        Valor
+        Value
         <input
           type="number"
           name="value"
           id="value"
           value={ value }
           onChange={ handleInputFilter }
-          className="input-element"
+          className="input-element input-number"
         />
       </label>
       <button
@@ -60,7 +60,7 @@ export default function NumericFilters() {
         onClick={ handleInputFilterClick }
         className="filter-btn"
       >
-        Filtrar
+        Filter
       </button>
     </form>
   );
