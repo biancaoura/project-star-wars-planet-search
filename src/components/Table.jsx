@@ -11,10 +11,10 @@ export default function Table() {
     'Terrain', 'Surface Water', 'Population', 'Films', 'Created', 'Edited', 'URL',
   ];
 
-  if (loading) return <h1>Loading...</h1>;
-  if (error) return <h1>Error</h1>;
+  if (loading) return <h1 className="placeholder">Loading...</h1>;
+  if (error) return <h1 className="placeholder">Error</h1>;
   return (
-    <table>
+    <table className="table-container">
       <thead>
         <tr>
           { tableHeader.map((el) => <th key={ el }>{el}</th>) }

@@ -110,7 +110,7 @@
   width: 10%;
 }
 
-.filter-list-container {
+.filter-list-container, .placeholder {
   margin: 1em 1.3em;
 }
 
@@ -129,4 +129,39 @@
   cursor: pointer;
   font-size: 18px;
   margin: 0.2em 0.3em 0;
+}
+
+.table-container {
+  border-collapse: collapse;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 100%;
+}
+
+td, th {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+  padding: 15px;
+}
+
+th {
+  text-align: left;
+}
+
+thead th {
+  background-color: black;
+}
+
+tbody td {
+  max-width: 200px;
+  overflow-wrap: break-word;
+}
+
+tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.126);
+}
+
+.placeholder {
+  color: white;
+
 }
