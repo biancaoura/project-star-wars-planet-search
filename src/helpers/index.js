@@ -8,8 +8,8 @@ export const COLUMN_OPTIONS = [
 
 export const INITIAL_INPUT = {
   column: COLUMN_OPTIONS[0],
-  comparison: 'maior que',
-  value: 0,
+  comparison: 'more than',
+  value: '',
 };
 
 export const INITIAL_SORT = {
@@ -18,7 +18,12 @@ export const INITIAL_SORT = {
 };
 
 export const COMPARISON = {
-  'maior que': (a, b) => a > b,
-  'menor que': (a, b) => a < b,
-  'igual a': (a, b) => a === b,
+  'more than': (a, b) => a > b,
+  'less than': (a, b) => a < b,
+  'equal to': (a, b) => a === b,
 };
+
+export const TABLE_HEADER = [
+  'Name', 'Rotation Period', 'Orbital Period', 'Diameter', 'Climate', 'Gravity',
+  'Terrain', 'Surface Water', 'Population', 'Films', 'Created', 'Edited', 'URL',
+];

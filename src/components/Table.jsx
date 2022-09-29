@@ -1,15 +1,11 @@
 import React, { useContext } from 'react';
 import PlanetContext from '../context/PlanetContext';
+import { TABLE_HEADER } from '../helpers';
 
 export default function Table() {
   const {
     loading, error, appliedFilter,
   } = useContext(PlanetContext);
-
-  const tableHeader = [
-    'Name', 'Rotation Period', 'Orbital Period', 'Diameter', 'Climate', 'Gravity',
-    'Terrain', 'Surface Water', 'Population', 'Films', 'Created', 'Edited', 'URL',
-  ];
 
   if (loading) return <h1 className="placeholder">Loading...</h1>;
   if (error) return <h1 className="placeholder">Error</h1>;
@@ -17,7 +13,7 @@ export default function Table() {
     <table className="table-container">
       <thead>
         <tr>
-          { tableHeader.map((el) => <th key={ el }>{el}</th>) }
+          { TABLE_HEADER.map((el) => <th key={ el }>{el}</th>) }
         </tr>
       </thead>
       <tbody>
