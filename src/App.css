@@ -66,6 +66,14 @@
   justify-content: space-between;
 }
 
+.input-number {
+  appearance: textfield;
+}
+
+.input-number::-webkit-inner-spin-button, .input-number::-webkit-outer-spin-button {
+  appearance: none;
+}
+
 .line {
   align-self: center;
   background: rgba(255, 255, 255, 0.495);
