@@ -22,8 +22,15 @@
 }
 
 .header {
+  align-items: center;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+
+}
+
+.header > h1 {
+  color: white;
+  margin: 1em;
 }
 
 .logo {
@@ -163,9 +170,4 @@ tbody td {
 
 tbody tr:hover {
   background-color: rgba(255, 255, 255, 0.273);
-}
-
-.placeholder {
-  color: white;
-
 }
