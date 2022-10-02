@@ -26,9 +26,10 @@ export default function FilterList() {
                 { value }
               </span>
               <button
-                type="button"
-                onClick={ () => removeFilterClick(column) }
                 className="remove-filter-btn"
+                data-testid="remove-btn"
+                onClick={ () => removeFilterClick(column) }
+                type="button"
               >
                 <FontAwesomeIcon icon={ faXmark } />
               </button>

@@ -35,8 +35,8 @@ describe('Testing filters', () => {
   
   it('1 - When applying filters, should only render matching planets', async () => {
     
-    const valueInput = screen.getByRole('spinbutton', { name: /valor/i });
-    const filterBtn = screen.getByRole('button', { name: /filtrar/i });
+    const valueInput = screen.getByRole('spinbutton', { name: /value/i });
+    const filterBtn = screen.getByRole('button', { name: 'Filter' });
 
     const planetName = await screen.findAllByRole('cell');
     expect(planetName[0]).toHaveTextContent(/tatooine/i);
@@ -47,7 +47,7 @@ describe('Testing filters', () => {
 
     userEvent.click(filterBtn);
 
-    expect(valueInput).toHaveValue(0);
+    expect(valueInput).toHaveValue(null);
     expect(planetName[0]).toHaveTextContent(/naboo/i);
   });
 
@@ -55,19 +55,19 @@ describe('Testing filters', () => {
     const planetName = await screen.findAllByRole('cell');
     expect(planetName[0]).toHaveTextContent(/tatooine/i);
 
-    const columnInput = screen.getByRole('combobox', { name: /coluna/i });
-    const comparisonInput = screen.getByRole('combobox', { name: /operador/i });
-    const valueInput = screen.getByRole('spinbutton', { name: /valor/i });
-    const filterBtn = screen.getByRole('button', { name: /filtrar/i });
+    const columnInput = screen.getByRole('combobox', { name: /column/i });
+    const comparisonInput = screen.getByRole('combobox', { name: /operator/i });
+    const valueInput = screen.getByRole('spinbutton', { name: /value/i });
+    const filterBtn = screen.getByRole('button', { name: 'Filter' });
 
     userEvent.selectOptions(columnInput, 'diameter');
-    userEvent.selectOptions(comparisonInput, 'menor que');
+    userEvent.selectOptions(comparisonInput, 'less than');
     userEvent.type(valueInput, '10000');    
     userEvent.click(filterBtn);
 
     expect(planetName[0]).toHaveTextContent(/hoth/i);
 
-    const removeBtn = screen.getByRole('button', { name: /x/i });
+    const removeBtn = screen.getByTestId('remove-btn');
     
     userEvent.click(removeBtn);
     expect(planetName[0]).toHaveTextContent(/tatooine/i);
@@ -78,24 +78,24 @@ describe('Testing filters', () => {
     const planetName = await screen.findAllByRole('cell');
     expect(planetName[0]).toHaveTextContent(/tatooine/i);
 
-    const columnInput = screen.getByRole('combobox', { name: /coluna/i });
-    const comparisonInput = screen.getByRole('combobox', { name: /operador/i });
-    const valueInput = screen.getByRole('spinbutton', { name: /valor/i });
-    const filterBtn = screen.getByRole('button', { name: /filtrar/i });
+    const columnInput = screen.getByRole('combobox', { name: /column/i });
+    const comparisonInput = screen.getByRole('combobox', { name: /operator/i });
+    const valueInput = screen.getByRole('spinbutton', { name: /value/i });
+    const filterBtn = screen.getByRole('button', { name: 'Filter' });
 
     userEvent.selectOptions(columnInput, 'diameter');
-    userEvent.selectOptions(comparisonInput, 'menor que');
+    userEvent.selectOptions(comparisonInput, 'less than');
     userEvent.type(valueInput, '10000');    
     userEvent.click(filterBtn);
 
     userEvent.selectOptions(columnInput, 'rotation_period');
-    userEvent.selectOptions(comparisonInput, 'igual a');
+    userEvent.selectOptions(comparisonInput, 'equal to');
     userEvent.type(valueInput, '18');    
     userEvent.click(filterBtn);
 
     expect(planetName[0]).toHaveTextContent(/endor/i);
 
-    const removeAllBtn = screen.getByRole('button', { name: /remover todos/i });
+    const removeAllBtn = screen.getByRole('button', { name: /remove all filters/i });
 
     userEvent.click(removeAllBtn);
     expect(planetName[0]).toHaveTextContent(/tatooine/i);
@@ -127,9 +127,9 @@ describe('Testing sorting the list', () => {
     const planetName = await screen.findAllByRole('cell');
     expect(planetName[0]).toHaveTextContent(/tatooine/i);
 
-    const sortOptions = screen.getByRole('combobox', { name: /ordenar por/i });
-    const descending = screen.getByRole('radio', { name: /descendente/i });
-    const sortBtn = screen.getByRole('button', { name: /ordenar/i });
+    const sortOptions = screen.getByRole('combobox', { name: /sort by/i });
+    const descending = screen.getByRole('radio', { name: /descending/i });
+    const sortBtn = screen.getByRole('button', { name: /sort/i });
 
     userEvent.selectOptions(sortOptions, 'population');
     userEvent.click(descending);
@@ -143,9 +143,9 @@ describe('Testing sorting the list', () => {
     const planetName = await screen.findAllByRole('cell');
     expect(planetName[0]).toHaveTextContent(/tatooine/i);
 
-    const sortOptions = screen.getByRole('combobox', { name: /ordenar por/i });
-    const ascending = screen.getByRole('radio', { name: /ascendente/i });
-    const sortBtn = screen.getByRole('button', { name: /ordenar/i });
+    const sortOptions = screen.getByRole('combobox', { name: /sort by/i });
+    const ascending = screen.getByRole('radio', { name: /ascending/i });
+    const sortBtn = screen.getByRole('button', { name: /sort/i });
 
     userEvent.selectOptions(sortOptions, 'diameter');
     userEvent.click(ascending);
